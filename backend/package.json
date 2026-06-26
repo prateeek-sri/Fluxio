@@ -1,19 +1,28 @@
 {
-  "name": "Fluxio-backend",
+  "name": "backend",
   "version": "1.0.0",
+  "description": "Visual Chaos Engineering Platform for Web Applications",
   "main": "src/server.js",
   "scripts": {
+    "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "start:prod": "NODE_ENV=production node src/server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "axios": "^1.6.0",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "pg": "^8.11.3",
-    "socket.io": "^4.7.2"
+    "axios": "^1.18.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.22.0",
+    "simple-git": "^3.36.0",
+    "socket.io": "^4.8.3",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.1.14"
   }
 }
