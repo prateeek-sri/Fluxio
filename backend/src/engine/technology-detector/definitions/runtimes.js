@@ -1,0 +1,17 @@
+export const RUNTIME_DEFINITIONS = new Map([
+  ["Java", "JVM"],
+  ["JavaScript", "Node.js"],
+  ["TypeScript", "Node.js"],
+  ["Python", "CPython"],
+  ["C#", ".NET CLR"],
+  ["PHP", "PHP Runtime"],
+  ["Ruby", "Ruby MRI"],
+  ["Go", "Go Runtime"],
+  ["Rust", "Native"],
+  ["C", "Native"],
+  ["C++", "Native"],
+  ["Swift", "Swift Runtime"],
+  ["Kotlin", "JVM"],
+  ["Scala", "JVM"],
+  ["Dart", "Dart VM"],
+]);

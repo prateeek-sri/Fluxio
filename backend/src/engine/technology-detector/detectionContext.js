@@ -1,4 +1,4 @@
-function createDetectionContext(projectIndex) {
+export function createDetectionContext(projectIndex) {
   const context = {
     repository: {
       projectIndex,
@@ -9,7 +9,9 @@ function createDetectionContext(projectIndex) {
       metadata: projectIndex.metadata,
     },
 
-    cache: {},
+    indexes: {
+      extensionIndex: null,
+    },
   };
   return context;
 }
