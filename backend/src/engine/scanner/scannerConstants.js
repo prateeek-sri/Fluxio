@@ -1,108 +1,77 @@
-/**
- * Folders that should never be scanned.
- * These folders either contain generated files,
- * dependencies, IDE configs, or version control data.
- */
-export const IGNORE_FOLDERS = [
-    "node_modules",
-    ".git",
-    ".next",
-    "dist",
-    "build",
-    "coverage",
-    "target",
-    ".idea",
-    ".vscode",
-    ".turbo",
-    ".vercel",
-    ".cache"
+export const IGNORED_FOLDERS = [
+  "node_modules",
+  ".git",
+  ".next",
+  "dist",
+  "build",
+  "coverage",
+  ".turbo",
+  ".idea",
+  ".vscode",
+  "target",
+  "bin",
+  "out",
 ];
 
-/**
- * Files that should never be analyzed.
- */
-export const IGNORE_FILES = [
-    ".DS_Store",
-    "Thumbs.db"
+export const IGNORED_FILES = [".DS_Store", "Thumbs.db"];
+
+export const IMPORTANT_FILES = [
+  "package.json",
+  "package-lock.json",
+  "pnpm-lock.yaml",
+  "yarn.lock",
+  "pom.xml",
+  "build.gradle",
+  "build.gradle.kts",
+  "settings.gradle",
+  "requirements.txt",
+  "Pipfile",
+  "pyproject.toml",
+  "Dockerfile",
+  "docker-compose.yml",
+  "docker-compose.yaml",
+  "README.md",
+  ".gitignore",
 ];
 
-/**
- * File extensions that contain readable source code.
- * These files can later be opened and analyzed.
- */
-export const TEXT_FILE_EXTENSIONS = [
-    ".js",
-    ".jsx",
-    ".ts",
-    ".tsx",
-    ".java",
-    ".kt",
-    ".py",
-    ".go",
-    ".rs",
-    ".php",
-    ".cs",
-    ".cpp",
-    ".c",
-    ".h",
-    ".json",
-    ".xml",
-    ".yaml",
-    ".yml",
-    ".properties",
-    ".env",
-    ".sql",
-    ".md"
+export const IMPORTANT_FOLDERS = [
+  "src",
+  "app",
+  "pages",
+  "routes",
+  "controllers",
+  "services",
+  "models",
+  "middlewares",
+  "middleware",
+  "config",
+  "database",
+  "db",
+  "prisma",
+  "public",
+  "static",
+  "test",
+  "tests",
 ];
 
-/**
- * Binary files.
- * We never read their contents.
- */
-export const BINARY_FILE_EXTENSIONS = [
-    ".png",
-    ".jpg",
-    ".jpeg",
-    ".gif",
-    ".svg",
-    ".ico",
-    ".pdf",
-    ".zip",
-    ".jar",
-    ".war",
-    ".exe",
-    ".dll",
-    ".so",
-    ".class"
-];
+export const IGNORED_EXTENSIONS = [
+".png",
+".jpg",
+".jpeg",
+".gif",
+".webp",
+".ico",
 
-/**
- * Framework/configuration files.
- * These are extremely valuable for architecture detection.
- */
-export const CONFIG_FILE_NAMES = [
-    "package.json",
-    "package-lock.json",
-    "pnpm-lock.yaml",
-    "yarn.lock",
+".mp4",
+".mov",
+".avi",
 
-    "pom.xml",
-    "build.gradle",
-    "settings.gradle",
+".zip",
+".rar",
+".7z",
 
-    "requirements.txt",
-    "pyproject.toml",
-    "Pipfile",
+".exe",
+".dll",
 
-    "go.mod",
-    "Cargo.toml",
-
-    "Dockerfile",
-    "docker-compose.yml",
-
-    "README.md",
-    "tsconfig.json",
-
-    ".env.example",
-    ".gitignore"
+".class"
 ];

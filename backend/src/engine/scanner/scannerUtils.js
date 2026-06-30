@@ -1,35 +1,34 @@
 import path from "path";
+
 import {
-    IGNORE_FOLDERS,
-    IGNORE_FILES,
-    TEXT_FILE_EXTENSIONS,
-    BINARY_FILE_EXTENSIONS
+  IGNORED_FILES,
+  IGNORED_FOLDERS,
+  IMPORTANT_FILES,
+  IMPORTANT_FOLDERS,
 } from "./scannerConstants.js";
 
 export function isIgnoredFolder(folderName) {
-    return IGNORE_FOLDERS.includes(folderName);
+  return IGNORED_FOLDERS.includes(folderName);
 }
 
 export function isIgnoredFile(fileName) {
-    return IGNORE_FILES.includes(fileName);
+  return IGNORED_FILES.includes(fileName);
+}
+
+export function isImportantFile(fileName) {
+  return IMPORTANT_FILES.includes(fileName);
+}
+
+export function isImportantFolder(folderName) {
+  return IMPORTANT_FOLDERS.includes(folderName);
 }
 
 export function getExtension(fileName) {
-    return path.extname(fileName).toLowerCase();
-}
-
-export function isTextFile(fileName) {
-    return TEXT_FILE_EXTENSIONS.includes(getExtension(fileName));
-}
-
-export function isBinaryFile(fileName) {
-    return BINARY_FILE_EXTENSIONS.includes(getExtension(fileName));
-}
-
-export function normalizePath(filePath) {
-    return filePath.replace(/\\/g, "/");
+  return path.extname(fileName).toLowerCase();
 }
 
 export function getRelativePath(rootPath, absolutePath) {
-    return normalizePath(path.relative(rootPath, absolutePath));
+    return path
+        .relative(rootPath, absolutePath)
+        .replaceAll("\\", "/");
 }

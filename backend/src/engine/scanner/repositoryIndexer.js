@@ -1,86 +1,44 @@
-import fs from "fs/promises";
-import path from "path";
+import { createProjectIndex } from "./projectIndex.js";
+import { scanFolder } from "./recursiveScanner.js";
 
-const IGNORE_FOLDERS = [
-    ".git",
-    "node_modules",
-    "dist",
-    "build",
-    "target",
-    ".next",
-    ".vscode",
-    ".idea",
-];
+export async function indexRepository(repositoryPath) {
+  const projectIndex =
+    createProjectIndex(repositoryPath);
 
-const IMPORTANT_CONFIG_FILES = [
-    "package.json",
-    "package-lock.json",
-    "pom.xml",
-    "build.gradle",
-    "settings.gradle",
-    "requirements.txt",
-    "pyproject.toml",
-    "go.mod",
-    "Cargo.toml",
-    "Dockerfile",
-    "docker-compose.yml",
-    "README.md",
-    ".env.example",
-    "tsconfig.json"
-];
+  projectIndex.metadata.scanStartedAt =
+    new Date();
 
-const IMPORTANT_FOLDERS = [
-    "src",
-    "routes",
-    "controllers",
-    "services",
-    "models",
-    "middlewares",
-    "config",
-    "repository",
-    "repositories",
-    "dao",
-    "entities",
-    "entity",
-    "api",
-    "handlers",
-    "graphql"
-];
+  const startTime = Date.now();
 
-function createProjectIndex() {
-    return {
-        files: [],
-        folders: [],
-        metadata: {}
-    };
-}
+  try {
+    await scanFolder({
+      rootPath: repositoryPath,
 
-export async function buildProjectIndex(projectPath) {
+      currentPath: repositoryPath,
 
-    const projectIndex = createProjectIndex();
+      projectIndex,
 
-    await scanDirectory(projectPath, projectIndex);
-
-    return projectIndex;
-}
-
-async function scanDirectory(directoryPath, projectIndex) {
-
-    const items = await fs.readdir(directoryPath, {
-        withFileTypes: true,
+      depth: 0,
     });
+  } catch (error) {
+    console.error(
+      "Repository indexing failed:",
+      error
+    );
 
-    for (const item of items) {
+    projectIndex.metadata.errors.push({
+      stage: "repositoryIndexer",
+      name: error.name,
+      message: error.message,
+      timestamp: new Date(),
+    });
+  } finally {
+    projectIndex.metadata.scanCompletedAt =
+      new Date();
 
-        if(IGNORE_FOLDERS.includes(item.name)) continue;
-        
-        const fullPath = path.join(directoryPath, item.name);
+    projectIndex.metadata.scanDurationMs =
+      Date.now() - startTime;
+  }
 
-        if(item.isDirectory()) {
-           
-            await scanDirectory(fullPath, projectIndex);
-        }
-    }
+  return projectIndex;
 }
-
-export default scanDirectory;

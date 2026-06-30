@@ -1,75 +1,37 @@
 import crypto from "crypto";
 
-export function createFileMetadata({
-    name,
-    extension,
-    absolutePath,
-    relativePath,
-    parentFolder,
-    size,
-    depth,
-    createdAt,
-    modifiedAt
-}) {
-    return {
-        id: crypto.randomUUID(),
+function createBaseMetadata(data) {
+  return {
+    id: crypto.randomUUID(),
 
-        kind: "file",
+    name: data.name,
 
-        name,
+    absolutePath: data.absolutePath,
+    relativePath: data.relativePath,
+    parentFolder: data.parentFolder,
 
-        extension,
+    depth: data.depth,
 
-        absolutePath,
-
-        relativePath,
-
-        parentFolder,
-
-        size,
-
-        depth,
-
-        createdAt,
-
-        modifiedAt,
-
-        analyzed: false,
-
-        tags: []
-    };
+    createdAt: data.createdAt,
+    modifiedAt: data.modifiedAt,
+  };
 }
 
-export function createFolderMetadata({
-    name,
-    absolutePath,
-    relativePath,
-    parentFolder,
-    depth,
-    createdAt,
-    modifiedAt
-}) {
-    return {
-        id: crypto.randomUUID(),
+export function createFileMetadata(data) {
+  return {
+    ...createBaseMetadata(data),
 
-        kind: "folder",
+    type: "file",
 
-        name,
+    extension: data.extension,
+    size: data.size,
+  };
+}
 
-        absolutePath,
+export function createFolderMetadata(data) {
+  return {
+    ...createBaseMetadata(data),
 
-        relativePath,
-
-        parentFolder,
-
-        depth,
-
-        createdAt,
-
-        modifiedAt,
-
-        analyzed: false,
-
-        tags: []
-    };
+    type: "folder",
+  };
 }
