@@ -5,7 +5,7 @@ export function getExtensionIndex(context) {
 
   const extensionIndex = new Map();
 
-  for (const file of context.repository.files) {
+  for (const file of context.repository.files.values()) {
     if (!file.extension) {
       continue;
     }
@@ -19,6 +19,5 @@ export function getExtensionIndex(context) {
   }
 
   context.indexes.extensionIndex = extensionIndex;
-
   return extensionIndex;
 }

@@ -7,17 +7,17 @@ export function createProjectIndex(rootPath) {
     idIndex: new Map(),
 
     technologies: {
-      languages: [],
+      languages: new Map(),
       frameworks: {
         backend: null,
         frontend: null,
       },
-      databases: [],
-      orms: [],
-      runtimes: [],
-      packageManagers: [],
-      buildTools: [],
-      deployment: [],
+      databases: new Map(),
+      orms: new Map(),
+      runtimes: new Map(),
+      packageManagers: new Map(),
+      buildTools: new Map(),
+      deployment: new Map(),
     },
 
     metadata: {

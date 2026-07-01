@@ -1,3 +1,4 @@
+import { EVIDENCE_TYPES } from "../definitions/evidenceTypes.js";
 import { LANGUAGE_DEFINITIONS } from "../definitions/languages.js";
 import { getExtensionIndex } from "../providers/extensionIndexProvider.js";
 
@@ -10,6 +11,9 @@ export async function detectLanguage(context) {
     if (!language) {
       continue;
     }
+    if (context.repository.technologies.languages.has(language)) {
+      continue;
+    }
 
     const fileIds = files.map((file) => file.id);
     const confidence = 100;
@@ -19,7 +23,7 @@ export async function detectLanguage(context) {
       confidence,
       evidence: [
         {
-          type: "extension",
+          type: EVIDENCE_TYPES.EXTENSION,
           value: extension,
           fileIds,
         },
@@ -27,9 +31,6 @@ export async function detectLanguage(context) {
       metadata: {},
     };
 
-    context.repository.technologies.languages.set(
-      language,
-      languageDetection,
-    );
+    context.repository.technologies.languages.set(language, languageDetection);
   }
 }

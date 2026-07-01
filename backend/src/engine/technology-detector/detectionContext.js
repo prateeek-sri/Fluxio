@@ -11,6 +11,7 @@ export function createDetectionContext(projectIndex) {
 
     indexes: {
       extensionIndex: null,
+      fileNameIndex: null,
     },
   };
   return context;
