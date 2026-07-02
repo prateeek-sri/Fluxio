@@ -40,11 +40,6 @@ import { runTechnologyDetector } from "../src/engine/technology-detector/technol
 
 const ROOT_PATH = "X:\\Web Development\\Spring Boot\\AnujJPA";
 
-
-// ─────────────────────────────────────────────────────────────────────────────
-//  Display helpers
-// ─────────────────────────────────────────────────────────────────────────────
-
 const W = 72; // total line width
 
 function line(char = "─") {
