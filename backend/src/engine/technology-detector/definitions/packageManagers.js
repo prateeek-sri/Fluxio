@@ -18,4 +18,8 @@ export const PACKAGE_MANAGER_DEFINITIONS = new Map([
   ["composer.json", "Composer"],
 
   ["Gemfile", "Bundler"],
+
+  ["requirements.txt", "pip"],
+  ["pyproject.toml", "pip"],
+  ["Pipfile", "Pipenv"],
 ]);

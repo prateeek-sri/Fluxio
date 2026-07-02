@@ -6,6 +6,7 @@ export const LANGUAGE_DEFINITIONS = new Map([
   [".js", "JavaScript"],
   [".mjs", "JavaScript"],
   [".cjs", "JavaScript"],
+  [".jsx", "JavaScript"],
 
   [".ts", "TypeScript"],
   [".tsx", "TypeScript"],
@@ -39,4 +40,6 @@ export const LANGUAGE_DEFINITIONS = new Map([
   [".sh", "Shell"],
 
   [".sql", "SQL"],
+
+  [".vue", "Vue"],
 ]);

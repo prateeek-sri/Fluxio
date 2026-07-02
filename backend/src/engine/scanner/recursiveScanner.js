@@ -4,6 +4,7 @@ import path from "path";
 import {
   isIgnoredFolder,
   isIgnoredFile,
+  isImportantFile,
   getExtension,
   getRelativePath,
 } from "./scannerUtils.js";
@@ -114,6 +115,14 @@ export async function scanFolder({
         );
 
         projectIndex.metadata.totalFiles++;
+
+        // Populate importantFiles index for fast manifest lookup
+        if (isImportantFile(item.name)) {
+          if (!projectIndex.importantFiles.has(item.name)) {
+            projectIndex.importantFiles.set(item.name, []);
+          }
+          projectIndex.importantFiles.get(item.name).push(fileMetadata);
+        }
       }
     }
   } catch (error) {

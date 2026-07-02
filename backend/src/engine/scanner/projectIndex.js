@@ -9,8 +9,8 @@ export function createProjectIndex(rootPath) {
     technologies: {
       languages: new Map(),
       frameworks: {
-        backend: null,
-        frontend: null,
+        backend: new Map(),
+        frontend: new Map(),
       },
       databases: new Map(),
       orms: new Map(),
@@ -18,6 +18,7 @@ export function createProjectIndex(rootPath) {
       packageManagers: new Map(),
       buildTools: new Map(),
       deployment: new Map(),
+      ecosystems: new Map(),
     },
 
     metadata: {
